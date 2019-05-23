@@ -1,21 +1,38 @@
-import {MigrationInterface, QueryRunner, Table, TableIndex, TableColumn, TableForeignKey } from 'typeorm';
+import {MigrationInterface, QueryRunner, Table} from 'typeorm';
 
 export class UserModel1558601892222 implements MigrationInterface {
-
     async up(queryRunner: QueryRunner): Promise<any> {
         await queryRunner.createTable(new Table({
             name: 'user',
             columns: [
                 {
                     name: 'id',
-                    type: 'uuid'
+                    type: 'int',
+                    isPrimary: true,
+                    isGenerated: true,
+                    generationStrategy: 'increment'
                 },
                 {
-                    name: "name",
-                    type: "varchar",
+                    name: 'username',
+                    type: 'varchar',
+                    isUnique: true
+                },
+                {
+                    name: 'email',
+                    type: 'varchar',
+                    isUnique: true
+                },
+                {
+                    name: 'bio',
+                    type: 'text',
+                    isNullable: true
+                },
+                {
+                    name: 'password',
+                    type: 'varchar'
                 }
             ]
-        }), true)
+        }), true);
     }
 
     async down(queryRunner: QueryRunner): Promise<any> {

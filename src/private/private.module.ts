@@ -17,6 +17,6 @@ export class PrivateModule implements NestModule {
     public configure(consumer: MiddlewareConsumer) {
         consumer
             .apply(AuthMiddleware)
-            .forRoutes({path: 'private/*', method: RequestMethod.ALL});
+            .forRoutes({path: 'private', method: RequestMethod.ALL});
     }
 }

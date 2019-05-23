@@ -1,9 +1,13 @@
 import {Controller, Get} from '@nestjs/common';
+import {ApiUseTags, ApiBearerAuth} from '@nestjs/swagger';
+import {User} from '../user/user.decorator';
 
-@Controller()
-export class AppController {
+@ApiBearerAuth()
+@ApiUseTags('private')
+@Controller('private')
+export class PrivateController {
     @Get()
-    index(): string {
-        return 'Hello World!';
+    index(@User('id') userId: number): string {
+        return 'Hello Private World!';
     }
 }
