@@ -34,7 +34,7 @@ export class ValidationPipe implements PipeTransform<any> {
         return result;
     }
 
-    private toValidate(metatype): boolean {
+    private toValidate(metatype) : boolean {
         const types = [String, Boolean, Number, Array, Object];
         return !types.find((type) => metatype === type);
     }
